@@ -87,13 +87,13 @@
         <a class="older-posts" href="/page/2/">Older Posts &rarr;</a>
 </nav>
 </div>
-
+ {% for blog in blogs %}
 <article class="post">
     <header class="post-header">
-        <h2 class="post-title"><a href="/2015/09/27/php-is-the-best-programing-language/">&quot;PHP&quot;是最好的编程语言</a></h2>
+        <h2 class="post-title"><a href="/2015/09/27/php-is-the-best-programing-language/">{{ blog.title }}</a></h2>
     </header>
     <section class="post-excerpt">
-        <p>标题 “PHP”是最好的编程语言 其实是技术圈的一个梗，启用这个梗是因为我不想挑起语言之争，不想去跟其它语言比较。 Scribd 在全球所有使用 Rails 网站中，做到了流量排行第三，最近该网站的创始人 Jared Friedman 写了一篇文章，告诫所有初创公司为什么他不会在选择 Rails: Why I wouldn’t use rails for a new <a class="read-more" href="/2015/09/27/php-is-the-best-programing-language/">&raquo;</a></p>
+        <p>{{ blog.brief }}<a class="read-more" href="/2015/09/27/php-is-the-best-programing-language/">&raquo;</a></p>
     </section>
     <footer class="post-meta">
         <img class="author-thumb" src="https://ruby-china-files.b0.upaiyun.com/user/big_avatar/3.jpg" alt="Author image" nopin="nopin" />
@@ -102,62 +102,63 @@
         <time class="post-date" datetime="2015-09-27">27 September 2015</time>
     </footer>
 </article>
-<article class="post">
-    <header class="post-header">
-        <h2 class="post-title"><a href="/2015/06/27/rails-api-to-be-part-of-rails-5/">RAILS API TO BE PART OF RAILS 5</a></h2>
-    </header>
-    <section class="post-excerpt">
-        <p>Rails API 项目整合工作已经完成，具体见https://github.com/rails/rails/pull/19832，下一步就等待 Rails 5.0 发布了！ 关于 Rails API 项目 Rails API 项目是由一群 Rails 社区的知名技术大牛创建的：Yehuda Katz, <a class="read-more" href="/2015/06/27/rails-api-to-be-part-of-rails-5/">&raquo;</a></p>
-    </section>
-    <footer class="post-meta">
-        <img class="author-thumb" src="https://ruby-china-files.b0.upaiyun.com/user/big_avatar/3.jpg" alt="Author image" nopin="nopin" />
-        <a href="/author/daniel/">Daniel Lv</a>
-        
-        <time class="post-date" datetime="2015-06-27">27 June 2015</time>
-    </footer>
-</article>
-<article class="post">
-    <header class="post-header">
-        <h2 class="post-title"><a href="/2015/03/28/my-first-docker-experience-report/">我的 Docker 的初体验</a></h2>
-    </header>
-    <section class="post-excerpt">
-        <p>首先必须要说：Docker 真的很有趣，很好玩。 一直有个说法，2014年是 Docker 年，Docker 发展得顺风顺水，开发社区活跃，国内外巨头迅速接纳，资本青睐，相关创业公司雨后春笋... 几乎任何跟 Docker 相关的新闻一出来，就立即盘踞各大技术媒体的头条，似乎所有人都突然间达成了一个共识：Docker 就是云计算的未来。 我自己算是后知后觉，最近折腾这个长草多年的博客的时候，顺便玩了一下，不准备深谈 Docker <a class="read-more" href="/2015/03/28/my-first-docker-experience-report/">&raquo;</a></p>
-    </section>
-    <footer class="post-meta">
-        <img class="author-thumb" src="https://ruby-china-files.b0.upaiyun.com/user/big_avatar/3.jpg" alt="Author image" nopin="nopin" />
-        <a href="/author/daniel/">Daniel Lv</a>
-        
-        <time class="post-date" datetime="2015-03-28">28 March 2015</time>
-    </footer>
-</article>
-<article class="post">
-    <header class="post-header">
-        <h2 class="post-title"><a href="/2015/03/28/never-trust-cnnic-certificate/">Mac OS X 下设置 CNNIC 证书为永不信任</a></h2>
-    </header>
-    <section class="post-excerpt">
-        <p>为什么要设置 CNNIC 证书为永不信任？因为持有该证书的组织的事迹可谓劣迹斑斑，如果你之前不知道，那么你可能已经是受害者，你的安全和隐私可能已经受到了侵犯（当然是在你毫不知情的情况下），甚至可能影响到他人和整个互联网的安全环境。如果你看到这篇文章并设置了永远不信任 CNNIC 证书，那么将来你一定会为此感到庆幸。 其他的我不多解释了，想要了解更多请自行 Google 一下很容易就明白为什么该组织做了那么多令人不齿的事情，为什么永远不应该信任 CNNIC 证书。 具体做法如下： 依次打开 Applications => Utilities => Keychain Access <a class="read-more" href="/2015/03/28/never-trust-cnnic-certificate/">&raquo;</a></p>
-    </section>
-    <footer class="post-meta">
-        <img class="author-thumb" src="https://ruby-china-files.b0.upaiyun.com/user/big_avatar/3.jpg" alt="Author image" nopin="nopin" />
-        <a href="/author/daniel/">Daniel Lv</a>
-        
-        <time class="post-date" datetime="2015-03-28">28 March 2015</time>
-    </footer>
-</article>
-<article class="post">
-    <header class="post-header">
-        <h2 class="post-title"><a href="/2015/03/26/trying-optimize-speed-of-api-request-overseas/">API 海外访问速度优化尝试</a></h2>
-    </header>
-    <section class="post-excerpt">
-        <p>问题描述：我们的某个线上服务有两种用户，普通用户（通过浏览器访问我们的服务）和 API 用户，API 又分为国内用户和海外用户，服务器放在青云的广州机房，经常有海外的API用户抱怨说访问我们的 API 请求响应很慢，网络延迟很高。 暂且不说功夫网的影响，国内网络的总出口带宽本身就很小，而且这几年出口总带宽也没有实质提升过，国外的请求在电信主干网的出口位置丢包 90% 是常有的事，无奈。去年（2014）年底，青云开放了亚太1区机房，机房位于香港， <a class="read-more" href="/2015/03/26/trying-optimize-speed-of-api-request-overseas/">&raquo;</a></p>
-    </section>
-    <footer class="post-meta">
-        <img class="author-thumb" src="https://ruby-china-files.b0.upaiyun.com/user/big_avatar/3.jpg" alt="Author image" nopin="nopin" />
-        <a href="/author/daniel/">Daniel Lv</a>
-        
-        <time class="post-date" datetime="2015-03-26">26 March 2015</time>
-    </footer>
-</article>
+    {% endfor %}
+<!--<article class="post">-->
+    <!--<header class="post-header">-->
+        <!--<h2 class="post-title"><a href="/2015/06/27/rails-api-to-be-part-of-rails-5/">RAILS API TO BE PART OF RAILS 5</a></h2>-->
+    <!--</header>-->
+    <!--<section class="post-excerpt">-->
+        <!--<p>Rails API 项目整合工作已经完成，具体见https://github.com/rails/rails/pull/19832，下一步就等待 Rails 5.0 发布了！ 关于 Rails API 项目 Rails API 项目是由一群 Rails 社区的知名技术大牛创建的：Yehuda Katz, <a class="read-more" href="/2015/06/27/rails-api-to-be-part-of-rails-5/">&raquo;</a></p>-->
+    <!--</section>-->
+    <!--<footer class="post-meta">-->
+        <!--<img class="author-thumb" src="https://ruby-china-files.b0.upaiyun.com/user/big_avatar/3.jpg" alt="Author image" nopin="nopin" />-->
+        <!--<a href="/author/daniel/">Daniel Lv</a>-->
+        <!---->
+        <!--<time class="post-date" datetime="2015-06-27">27 June 2015</time>-->
+    <!--</footer>-->
+<!--</article>-->
+<!--<article class="post">-->
+    <!--<header class="post-header">-->
+        <!--<h2 class="post-title"><a href="/2015/03/28/my-first-docker-experience-report/">我的 Docker 的初体验</a></h2>-->
+    <!--</header>-->
+    <!--<section class="post-excerpt">-->
+        <!--<p>首先必须要说：Docker 真的很有趣，很好玩。 一直有个说法，2014年是 Docker 年，Docker 发展得顺风顺水，开发社区活跃，国内外巨头迅速接纳，资本青睐，相关创业公司雨后春笋... 几乎任何跟 Docker 相关的新闻一出来，就立即盘踞各大技术媒体的头条，似乎所有人都突然间达成了一个共识：Docker 就是云计算的未来。 我自己算是后知后觉，最近折腾这个长草多年的博客的时候，顺便玩了一下，不准备深谈 Docker <a class="read-more" href="/2015/03/28/my-first-docker-experience-report/">&raquo;</a></p>-->
+    <!--</section>-->
+    <!--<footer class="post-meta">-->
+        <!--<img class="author-thumb" src="https://ruby-china-files.b0.upaiyun.com/user/big_avatar/3.jpg" alt="Author image" nopin="nopin" />-->
+        <!--<a href="/author/daniel/">Daniel Lv</a>-->
+        <!---->
+        <!--<time class="post-date" datetime="2015-03-28">28 March 2015</time>-->
+    <!--</footer>-->
+<!--</article>-->
+<!--<article class="post">-->
+    <!--<header class="post-header">-->
+        <!--<h2 class="post-title"><a href="/2015/03/28/never-trust-cnnic-certificate/">Mac OS X 下设置 CNNIC 证书为永不信任</a></h2>-->
+    <!--</header>-->
+    <!--<section class="post-excerpt">-->
+        <!--<p>为什么要设置 CNNIC 证书为永不信任？因为持有该证书的组织的事迹可谓劣迹斑斑，如果你之前不知道，那么你可能已经是受害者，你的安全和隐私可能已经受到了侵犯（当然是在你毫不知情的情况下），甚至可能影响到他人和整个互联网的安全环境。如果你看到这篇文章并设置了永远不信任 CNNIC 证书，那么将来你一定会为此感到庆幸。 其他的我不多解释了，想要了解更多请自行 Google 一下很容易就明白为什么该组织做了那么多令人不齿的事情，为什么永远不应该信任 CNNIC 证书。 具体做法如下： 依次打开 Applications => Utilities => Keychain Access <a class="read-more" href="/2015/03/28/never-trust-cnnic-certificate/">&raquo;</a></p>-->
+    <!--</section>-->
+    <!--<footer class="post-meta">-->
+        <!--<img class="author-thumb" src="https://ruby-china-files.b0.upaiyun.com/user/big_avatar/3.jpg" alt="Author image" nopin="nopin" />-->
+        <!--<a href="/author/daniel/">Daniel Lv</a>-->
+        <!---->
+        <!--<time class="post-date" datetime="2015-03-28">28 March 2015</time>-->
+    <!--</footer>-->
+<!--</article>-->
+<!--<article class="post">-->
+    <!--<header class="post-header">-->
+        <!--<h2 class="post-title"><a href="/2015/03/26/trying-optimize-speed-of-api-request-overseas/">API 海外访问速度优化尝试</a></h2>-->
+    <!--</header>-->
+    <!--<section class="post-excerpt">-->
+        <!--<p>问题描述：我们的某个线上服务有两种用户，普通用户（通过浏览器访问我们的服务）和 API 用户，API 又分为国内用户和海外用户，服务器放在青云的广州机房，经常有海外的API用户抱怨说访问我们的 API 请求响应很慢，网络延迟很高。 暂且不说功夫网的影响，国内网络的总出口带宽本身就很小，而且这几年出口总带宽也没有实质提升过，国外的请求在电信主干网的出口位置丢包 90% 是常有的事，无奈。去年（2014）年底，青云开放了亚太1区机房，机房位于香港， <a class="read-more" href="/2015/03/26/trying-optimize-speed-of-api-request-overseas/">&raquo;</a></p>-->
+    <!--</section>-->
+    <!--<footer class="post-meta">-->
+        <!--<img class="author-thumb" src="https://ruby-china-files.b0.upaiyun.com/user/big_avatar/3.jpg" alt="Author image" nopin="nopin" />-->
+        <!--<a href="/author/daniel/">Daniel Lv</a>-->
+        <!---->
+        <!--<time class="post-date" datetime="2015-03-26">26 March 2015</time>-->
+    <!--</footer>-->
+<!--</article>-->
 
 <nav class="pagination" role="navigation">
     <span class="page-number">Page 1 of 18</span>

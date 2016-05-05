@@ -21,13 +21,20 @@ class User(db.Model):
     def __repr__(self):
         return '<User %r>' % self.username
 
+    def __init__(self, **kwargs):
+        super(User, self).__init__(**kwargs)
+
+    def save(self):
+        db.session.add(self)
+        db.session.commit()
+
 
 class Topic(db.Model):
 
     __tablename__ = 'topics'
 
     id = db.Column(db.Integer, primary_key=True)
-    title = db.Column(db.String(20), unqiue=True)
+    title = db.Column(db.String(20))
     create_time = db.Column(db.DateTime)
 
     blogs = db.relationship('Blog', backref='topic', lazy='dynamic')
@@ -38,20 +45,39 @@ class Topic(db.Model):
     def __init__(self, **kwargs):
         super(Topic, self).__init__(**kwargs)
 
+    def save(self):
+        db.session.add(self)
+        db.session.commit()
+
+    def to_json(self):
+        json = dict(title=self.title, create_time=self.create_time)
+        return json
+
+
 
 class Keywords(db.Model):
 
     __tablename__ = 'keywords'
 
     id = db.Column(db.Integer, primary_key=True)
-    title = db.Column(db.String(20), unique=True)
+    title = db.Column(db.String(20))
     create_time = db.Column(db.DateTime, default=datetime.now())
+
+    blogs = db.relationship('Blog', backref='keywords', lazy='dynamic')
 
     def __repr__(self):
         return '<Keywords %r>' % self.title
 
     def __init__(self, **kwargs):
         super(Keywords, self).__init__(**kwargs)
+
+    def save(self):
+        db.session.add(self)
+        db.session.commit()
+
+    def to_json(self):
+        json = dict(title=self.title, create_time=self.create_time)
+        return json
 
 
 
@@ -60,15 +86,17 @@ class Blog(db.Model):
     __tablename__ = 'blogs'
 
     id = db.Column(db.Integer, primary_key=True)
-    title = db.Column(db.String(20), unique=True)
+    title = db.Column(db.String(20))
     brief = db.Column(db.String(200))
     content = db.Column(db.Text)
     create_time = db.Column(db.DateTime, default=datetime.now())
     update_time = db.Column(db.DateTime)
     status = db.Column(db.Integer)
+
+    # foreign key
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
     topic_id = db.Column(db.Integer, db.ForeignKey('topics.id'))
-
+    keyword_id = db.Column(db.Integer, db.ForeignKey('keywords.id'))
 
     def __repr__(self):
         return '<Blog %r>' % self.title
@@ -78,6 +106,9 @@ class Blog(db.Model):
 
     def save(self):
         db.session.add(self)
+        db.session.commit()
+
+    def update(self):
         db.session.commit()
 
     def to_json(self):

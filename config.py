@@ -20,10 +20,10 @@ class Config:
 # 开发环境
 class DevelopingConfig(Config):
 
-    SQLALCHEMY_DATABASE_URI = 'mysql://root:123@127.0.0.1:3306/indoor'
+    SQLALCHEMY_DATABASE_URI = 'mysql://root:123@127.0.0.1:3306/blog'
 
     # 分页
-    APP_LIST_PER_PAGE = 10
+    BLOG_LIST_PER_PAGE = 10
 
     # Email
     SECRET_KEY = os.environ.get('SECRET_KEY') or 'hard to guess string'
@@ -42,6 +42,10 @@ class DevelopingConfig(Config):
 class TestingConfig(Config):
     import os
     BASE_DIR = os.path.abspath(os.path.dirname(__file__))
+
+    # 分页
+    BLOG_LIST_PER_PAGE = 10
+
     SQLALCHEMY_DATABASE_URI = 'sqlite:///' + os.path.join(BASE_DIR, 'data.sqlite')
     DEBUG = True
 
