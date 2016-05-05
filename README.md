@@ -1,5 +1,6 @@
-# flask_dev 
-总结的Flask快速开发框架。
+# BLOG TEMPLATE
+快速编写博客的框架
+采用Python Flask框架编写
 
 - 下载git项目
 
