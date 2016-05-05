@@ -4,6 +4,7 @@ from flask.ext.script import Manager
 from app import create_app
 from app import db
 
+
 app = create_app('test')
 manager = Manager(app)
 

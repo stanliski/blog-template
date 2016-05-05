@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    <title>我的 Docker 的初体验</title>
+    <meta name="description" content="" />
+
+    <meta name="HandheldFriendly" content="True" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="shortcut icon" href="/favicon.ico">
+
+    <link href='https://dn-maxiang.qbox.me/res-min/themes/marxico.css' rel='stylesheet'>
+
+    <link rel="stylesheet" type="text/css" href="/static/css/screen.css?v=a5427482e1" />
+    <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Merriweather:300,700,700italic,300italic|Open+Sans:700,400" />
+
+    <link rel="canonical" href="http://changetoyoururl.daoapp.io/2015/03/28/my-first-docker-experience-report/" />
+    
+    <meta property="og:site_name" content="Looking forward to change" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="我的 Docker 的初体验" />
+    <meta property="og:description" content="首先必须要说：Docker 真的很有趣，很好玩。 一直有个说法，2014年是 Docker 年，Docker 发展得顺风顺水，开发社区活跃，国内外巨头迅速接纳，资本青睐，相关创业公司雨后春笋... 几乎任何跟 Docker 相关的新闻一出来，就立即盘踞各大技术媒体的头条，似乎所有人都突然间达成了一个共识：Docker 就是云计算的未来。 我自己算是后知后觉，最近折腾这个长草多年的博客的时候，顺便玩了一下，不准备深谈 Docker 技术的未来，就谈谈自己的初体验。 Docker 目前的生态环境非常好 各家云主机服务商只要提供 Ubuntu 14 或者 CentOS 7，就能完美支持 Docker。在 Mac..." />
+    <meta property="og:url" content="http://changetoyoururl.daoapp.io/2015/03/28/my-first-docker-experience-report/" />
+    <meta property="article:published_time" content="2015-03-28T19:16:30.000Z" />
+    <meta property="article:modified_time" content="2015-03-29T06:38:17.000Z" />
+    
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="我的 Docker 的初体验" />
+    <meta name="twitter:description" content="首先必须要说：Docker 真的很有趣，很好玩。 一直有个说法，2014年是 Docker 年，Docker 发展得顺风顺水，开发社区活跃，国内外巨头迅速接纳，资本青睐，相关创业公司雨后春笋... 几乎任何跟 Docker 相关的新闻一出来，就立即盘踞各大技术媒体的头条，似乎所有人都突然间达成了一个共识：Docker 就是云计算的未来。 我自己算是后知后觉，最近折腾这个长草多年的博客的时候，顺便玩了一下，不准备深谈 Docker 技术的未来，就谈谈自己的初体验。 Docker 目前的生态环境非常好 各家云主机服务商只要提供 Ubuntu 14 或者 CentOS 7，就能完美支持 Docker。在 Mac..." />
+    <meta name="twitter:url" content="http://changetoyoururl.daoapp.io/2015/03/28/my-first-docker-experience-report/" />
+    
+    <script type="application/ld+json">
+{
+    "@context": "http://schema.org",
+    "@type": "Article",
+    "publisher": "Looking forward to change",
+    "author": {
+        "@type": "Person",
+        "name": "Daniel Lv",
+        "image": "https://ruby-china-files.b0.upaiyun.com/user/big_avatar/3.jpg",
+        "url": "http://changetoyoururl.daoapp.io/author/daniel",
+        "sameAs": "http://lvguoning.com",
+        "description": "Rubyist, founder and manager of http://ruby-china.org"
+    },
+    "headline": "我的 Docker 的初体验",
+    "url": "http://changetoyoururl.daoapp.io/2015/03/28/my-first-docker-experience-report/",
+    "datePublished": "2015-03-28T19:16:30.000Z",
+    "dateModified": "2015-03-29T06:38:17.000Z",
+    "description": "首先必须要说：Docker 真的很有趣，很好玩。 一直有个说法，2014年是 Docker 年，Docker 发展得顺风顺水，开发社区活跃，国内外巨头迅速接纳，资本青睐，相关创业公司雨后春笋... 几乎任何跟 Docker 相关的新闻一出来，就立即盘踞各大技术媒体的头条，似乎所有人都突然间达成了一个共识：Docker 就是云计算的未来。 我自己算是后知后觉，最近折腾这个长草多年的博客的时候，顺便玩了一下，不准备深谈 Docker 技术的未来，就谈谈自己的初体验。 Docker 目前的生态环境非常好 各家云主机服务商只要提供 Ubuntu 14 或者 CentOS 7，就能完美支持 Docker。在 Mac..."
+}
+    </script>
+
+    <meta name="generator" content="Ghost 0.6" />
+    <link rel="alternate" type="application/rss+xml" title="Looking forward to change" href="http://changetoyoururl.daoapp.io/rss/" />
+</head>
+<body class="post-template nav-closed">
+
+    <div class="nav">
+    <h3 class="nav-title">Menu</h3>
+    <a href="#" class="nav-close">
+        <span class="hidden">Close</span>
+    </a>
+    <ul>
+            <li class="nav-home" role="presentation"><a href="http://lvguoning.com/">Home</a></li>
+            <li class="nav-email" role="presentation"><a href="mailto:lgn21st@gmail.com">Email</a></li>
+            <li class="nav-twitter" role="presentation"><a href="https://twitter.com/lgn21st">Twitter</a></li>
+            <li class="nav-facebook" role="presentation"><a href="https://www.facebook.com/lgn21st">Facebook</a></li>
+            <li class="nav-linkedin" role="presentation"><a href="https://www.linkedin.com/in/daniellv">LinkedIn</a></li>
+            <li class="nav-weibo" role="presentation"><a href="https://weibo.com/lgn21st">Weibo</a></li>
+    </ul>
+    <a class="subscribe-button icon-feed" href="http://changetoyoururl.daoapp.io/rss/">Subscribe</a>
+</div>
+<span class="nav-cover"></span>
+
+
+    <div class="site-wrapper">
+
+        
+
+
+<header class="main-header post-head no-cover">
+    <nav class="main-nav  clearfix">
+        
+            <a class="menu-button icon-menu" href="#"><span class="word">Menu</span></a>
+    </nav>
+</header>
+
+<main class="content" role="main">
+    <article class="post">
+
+        <header class="post-header">
+            <h1 class="post-title">我的 Docker 的初体验</h1>
+            <section class="post-meta">
+                <time class="post-date" datetime="2015-03-28">28 March 2015</time> 
+            </section>
+        </header>
+
+        <section class="post-content">
+            <p>首先必须要说：<a href="https://www.docker.com">Docker</a> 真的很有趣，很好玩。</p>
+
+<p>一直有个说法，2014年是 Docker 年，Docker 发展得顺风顺水，开发社区活跃，国内外巨头迅速接纳，资本青睐，相关创业公司雨后春笋... 几乎任何跟 Docker 相关的新闻一出来，就立即盘踞各大技术媒体的头条，似乎所有人都突然间达成了一个共识：Docker 就是云计算的未来。</p>
+
+<p>我自己算是后知后觉，最近折腾这个长草多年的博客的时候，顺便玩了一下，不准备深谈 Docker 技术的未来，就谈谈自己的初体验。</p>
+
+<h6 id="docker">Docker 目前的生态环境非常好</h6>
+
+<p>各家云主机服务商只要提供 Ubuntu 14 或者 CentOS 7，就能完美支持 Docker。在 Mac 上有<a href="https://kitematic.com">kitematic</a>，非常傻瓜化的GUI工具，让配置，下载，安装，管理 Docker 容器变的超级轻松。</p>
+
+<p>激进的云主机服务商如 DigitalOcean，EC2，Rackspace，QingCloud等直接提供 <a href="https://coreos.com">CoreOS</a> 镜像，CoreOS 是一个专门为运行容器（Container）的云平台而量身打造的系统，CoreOS 也特别有趣，以后找机会专门写点 CoreOS 的体验。</p>
+
+<p>目前这个博客跑在 DigitalOcean 上，$5/mo 的 VPS，内存 512MB，20G SSD，CoreOS 607 stable 系统, 跑了 Ghost，Shadowsocks 等若干个 Docker 应用，感觉绰绰有余。</p>
+
+<h6 id="docker">Docker 易入门难深入</h6>
+
+<p>如果你想用 Docker 搭建一个博客比如本站，具体怎么做呢？只需要一条命令，一个用 ghost 的博客就搭建好了，访问 IP 或者域名，你就可以开始写文章了。</p>
+
+<pre><code class="language-bash">docker run --name blog -p 80:2368 -d ghost  
+</code></pre>
+
+<p>如果你只想尽快通过 Docker 把应用跑起来，那么你开始只需要了解 docker 命令行的用法就够了，网上找到大量的入门教程，包括视频，差不多半个下午的时间就能成为 docker 命令行高手了。</p>
+
+<p>如果你想灵活运用 Docker，那么你需要用抽丝剥茧一般精神，一层一层搞明白很多层次的东西才行：</p>
+
+<ul>
+<li>深入理解 Linux 系统的运维，积累一定的运维的最佳实践经验</li>
+<li>理解你部署的每一个应用的运行机制，如果不通过 docker，你应该如何构建部署这个应用，只有这样才能正确的使用 Docker 容器去运行应用</li>
+<li>Docker 的命令行工具以及管理镜像和应用容器的生命周期的原则</li>
+<li>Dockfile 的用法，Docker 是如何通过 Dockfile 把应用打包成镜像的</li>
+<li>Docker Hub 的用法，搜索并下载别人创建的镜像，或者把自己的镜像推上去</li>
+<li>Docker 的网络原理，如何把容器的服务端口暴露给 host 或者跟其他 docker 容器通过网络协作</li>
+<li>Docker 如何持久化应用的数据，理解 Docker 的文件系统，数据卷和数据卷容器的原理</li>
+<li>Docker 的底层原理，包括 Linux 容器，联合文件系统，CGroups，Network namespace，User namespace，资源管理等等</li>
+</ul>
+
+<p>如果你真的要把 Docker 用好，管理好，所有这些涉及到的 docker 底层知识是跳不过去的。推荐一本<a href="https://www.gitbook.com/book/yeasy/docker_practice/details">入门书</a>，因为 Docker 还在快速发展，最新的内容请关注官网，或者订阅<a href="https://www.docker.com/subscribe_newsletter/">Docker weekly newsletter </a></p>
+
+<h6 id="">应不应该用?什么时候用?</h6>
+
+<p>我的答案是用！现在就应该开始用，可以先从周边服务开始。</p>
+
+<p>基于容器思想来部署服务和应用，对资源的利用率，自动化都有意义，但是最大的好处是简化了服务器构建，比如安装配置 MySQL，Redis，Queue，Nginx，等，基本都是一条命令搞定。甚至你交付应用给客户，可能也只需要客户执行一条命令，安装，升级，部署就完成了。</p>
+
+<p>其实计算机领域里面有一个亘古不变的道理：为了让一个东西看上去很简单所需要付出的努力往往反而更多，Docker 也是一样。Docker 并不能让你免去运维，而是相反，对运维人员水平的要求反而更高了，为了支撑 Docker 的简单易用特性，背后需要运维人员在镜像的维护和容器管理上，要考虑的东西其实更多，环境更加复杂。</p>
+
+<h6 id="">吐槽</h6>
+
+<p>槽点1：从宿主系统拷贝文件到容器内很麻烦</p>
+
+<p>以Ghost博客为例，我把之前所有的文章从原平台全部导出，在本地将文章在本地运行的博客上处理好，得到一个 sqlite3 的数据库文件，我希望把这个文件直接用于服务器上的博客。</p>
+
+<p>Docker 1.0 开始提供了一个命令 <code>docker cp</code> 可以让你很方便的把容器内的文件拷贝到宿主环境：</p>
+
+<pre><code>docker cp container:/path/to/file .  
+</code></pre>
+
+<p>但是反过来，想把文件拷贝到容器内怎么办？官方的说法是 Docker 1.6 发布后，<code>docker cp</code> 才会支持从宿主环境拷贝文件到容器内，目前的解决方案是通过 <code>docker exec</code> 加 shell 管道的方式，非常 trick</p>
+
+<pre><code>docker exec -i blog sh -c 'cat &gt; /var/lib/ghost/data/ghost-dev.db' &lt; ./ghost-dev.db  
+</code></pre>
+
+<p>槽点2: 数据卷和文件权限管理</p>
+
+<p>Docker 的镜像文件系统则是一种类似一层一层累加起来的只读文件系统，当容器启动的时候，除了载入所有来自镜像的只读文件系统外，还会在其上挂载一层可读写的文件系统层，当删除或者重启容器后，位于读写层中的内容就会丢失。</p>
+
+<p>为了备份和持久化应用数据，可以创建一个数据卷（Volume）来解决，以当前的博客为例，我需要备份配置文件，自定义的theme，以及数据库数据。用数据卷存储数据可以绕过 Docker 文件系统，把容器内某个文件或者目录，映射到宿主环境中。理解起来就是可以在宿主环境中直接访问容器内的文件，就像访问本地文件系统一样。</p>
+
+<p>Docker 内通常是以 root 用户运行应用的，而宿主环境则通常为了安全，不建议直接使用root用户，这就导致了在容器内看到的文件的权限跟宿主环境看到的不一样，虽然可以在启动容器的时候传入一个用户id进去，命令如下：</p>
+
+<pre><code>docker run -i -t -user="myuser" ...  
+</code></pre>
+
+<p>但是这里 myuser 在容器中的 uid 跟宿主的 uid 是不一样的，所以容器内的同名用户权限不等同于宿主用户权限。其实也没有必要一样，因为各自环境中的用户权限应该由各自的环境来定义。docker 容器内的用户权限是继承了宿主的 docker 进程的权限，缺乏一个宿主和容器内用户的权限映射机制，详情见 <a href="https://github.com/docker/docker/issues/7198">github issue#7198</a>，</p>
+
+<p>我在这里踩到一个坑，当首次在容器内运行 Ghost 后，我直接在容器外部用备份覆盖了某个配置文件，因为文件权限的变化，容器重启后，enterpoint.sh 执行到此处会报错并自动终止当前容器的运行，换句话说，就是这个容器再也 run 不起来了，错误信息说是文件不存在或者权限错误。对于一个无法再次启动的容器，你什么也做不了，可能只能干掉这个容器，然后从镜像再次创建一个新的了。</p>
+
+<p>文件的 ownership 和 permission 对于 Linux 来说非常重要，是整个系统安全的基石，希望将来 Docker 能尽快妥善解决。其实这个问题 Docker 社区讨论了很久，但是当前的解决方案在目前看来都不成熟，目前社区推荐的做法是使用 data-only 容器来持久化应用数据，一开始我并不接受，容器的数据存储在另外一个容器内，感觉还是不太放心，如果完全依赖容器，万一容器挂了怎么办？后来我看到一篇文章介绍说应该放弃数据从逻辑上到物理上必须保存在宿主环境中这一执念。如果应用数据也存放在容器中，那么对于运维人员来说就<a href="https://medium.com/@ramangupta/why-docker-data-containers-are-good-589b3c6c749e">不需要再去关心数据的物理存放位置了</a>。别以为 data-only 容器那么简单，想要正确使用 data-only 容器你必须要先<a href="http://container42.com/2014/11/18/data-only-container-madness/">理解它背后的原理</a>才不会踩坑。</p>
+
+<p>其实还有其他槽点，也可能是因为我对 Docker 的理解还太粗浅，这里就暂时按下不表了。</p>
+
+<p>Docker 已经事实上改变了整个当前的云生态，我希望 Docker 发展的更好，希望各家云平台大力增加对 docker 的支持，也同时看好一些基于 Docker 的创业公司能在未来有非常好的前景，比如 <a href="https://www.daocloud.io">https://www.daocloud.io</a></p>
+        </section>
+
+        <footer class="post-footer">
+
+
+            <figure class="author-image">
+                <a class="img" href="/author/daniel/" style="background-image: url(https://ruby-china-files.b0.upaiyun.com/user/big_avatar/3.jpg)"><span class="hidden">Daniel Lv's Picture</span></a>
+            </figure>
+
+            <section class="author">
+                <h4><a href="/author/daniel/">Daniel Lv</a></h4>
+
+                    <p>Rubyist, founder and manager of http://ruby-china.org</p>
+                <div class="author-meta">
+                    <span class="author-location icon-location">Qingdao, Shandong, China</span>
+                    <span class="author-link icon-link"><a href="http://lvguoning.com">http://lvguoning.com</a></span>
+                </div>
+            </section>
+
+
+            <section class="share">
+                <h4>Share this post</h4>
+                <a class="icon-twitter" href="https://twitter.com/share?text=%E6%88%91%E7%9A%84%20Docker%20%E7%9A%84%E5%88%9D%E4%BD%93%E9%AA%8C&amp;url=http://changetoyoururl.daoapp.io/2015/03/28/my-first-docker-experience-report/"
+                    onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+                    <span class="hidden">Twitter</span>
+                </a>
+                <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=http://changetoyoururl.daoapp.io/2015/03/28/my-first-docker-experience-report/"
+                    onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+                    <span class="hidden">Facebook</span>
+                </a>
+                <a class="icon-google-plus" href="https://plus.google.com/share?url=http://changetoyoururl.daoapp.io/2015/03/28/my-first-docker-experience-report/"
+                   onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
+                    <span class="hidden">Google+</span>
+                </a>
+            </section>
+
+        </footer>
+
+    </article>
+</main>
+
+<aside class="read-next">
+    <a class="read-next-story no-cover" href="/2015/06/27/rails-api-to-be-part-of-rails-5/">
+        <section class="post">
+            <h2>RAILS API TO BE PART OF RAILS 5</h2>
+            <p>Rails API 项目整合工作已经完成，具体见https://github.com/rails/rails/pull/19832，下一步就等待 Rails 5.0 发布了！ 关于 Rails API 项目&hellip;</p>
+        </section>
+    </a>
+    <a class="read-next-story prev no-cover" href="/2015/03/28/never-trust-cnnic-certificate/">
+        <section class="post">
+            <h2>Mac OS X 下设置 CNNIC 证书为永不信任</h2>
+            <p>为什么要设置 CNNIC 证书为永不信任？因为持有该证书的组织的事迹可谓劣迹斑斑，如果你之前不知道，那么你可能已经是受害者，你的安全和隐私可能已经受到了侵犯（当然是在你毫不知情的情况下），甚至可能影响到他人和整个互联网的安全环境。如果你看到这篇文章并设置了永远不信任 CNNIC 证书，那么将来你一定会为此感到庆幸。 其他的我不多解释了，想要了解更多请自行 Google 一下很容易就明白为什么该组织做了那么多令人不齿的事情，为什么永远不应该信任 CNNIC&hellip;</p>
+        </section>
+    </a>
+</aside>
+
+
+
+        <footer class="site-footer clearfix">
+            <section class="copyright"><a href="http://changetoyoururl.daoapp.io">Looking forward to change</a> &copy; 2016</section>
+            <section class="poweredby">Proudly published with <a href="https://ghost.org">Ghost</a></section>
+        </footer>
+
+    </div>
+
+    <script src="/static/js/jquery.min.js?v=a5427482e1"></script>
+
+    <script type="text/javascript" src="/static/js/jquery.fitvids.js?v=a5427482e1"></script>
+    <script type="text/javascript" src="/static/js/index.js?v=a5427482e1"></script>
+
+<script type="text/javascript" src="/static/js/mu.js"></script>
+</body>
+</html>

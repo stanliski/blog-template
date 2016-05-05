@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    <title>我的 Docker 的初体验</title>
+    <meta name="description" content="" />
+
+    <meta name="HandheldFriendly" content="True" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="shortcut icon" href="/favicon.ico">
+
+    <link href='https://dn-maxiang.qbox.me/res-min/themes/marxico.css' rel='stylesheet'>
+
+    <link rel="stylesheet" type="text/css" href="./assets/css/screen.css?v=a5427482e1" />
+    <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Merriweather:300,700,700italic,300italic|Open+Sans:700,400" />
+
+    <link rel="canonical" href="http://changetoyoururl.daoapp.io/2015/03/28/my-first-docker-experience-report/" />
+    
+    <meta property="og:site_name" content="Looking forward to change" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="我的 Docker 的初体验" />
+    <meta property="og:description" content="首先必须要说：Docker 真的很有趣，很好玩。 一直有个说法，2014年是 Docker 年，Docker 发展得顺风顺水，开发社区活跃，国内外巨头迅速接纳，资本青睐，相关创业公司雨后春笋... 几乎任何跟 Docker 相关的新闻一出来，就立即盘踞各大技术媒体的头条，似乎所有人都突然间达成了一个共识：Docker 就是云计算的未来。 我自己算是后知后觉，最近折腾这个长草多年的博客的时候，顺便玩了一下，不准备深谈 Docker 技术的未来，就谈谈自己的初体验。 Docker 目前的生态环境非常好 各家云主机服务商只要提供 Ubuntu 14 或者 CentOS 7，就能完美支持 Docker。在 Mac..." />
+    <meta property="og:url" content="http://changetoyoururl.daoapp.io/2015/03/28/my-first-docker-experience-report/" />
+    <meta property="article:published_time" content="2015-03-28T19:16:30.000Z" />
+    <meta property="article:modified_time" content="2015-03-29T06:38:17.000Z" />
+    
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="我的 Docker 的初体验" />
+    <meta name="twitter:description" content="首先必须要说：Docker 真的很有趣，很好玩。 一直有个说法，2014年是 Docker 年，Docker 发展得顺风顺水，开发社区活跃，国内外巨头迅速接纳，资本青睐，相关创业公司雨后春笋... 几乎任何跟 Docker 相关的新闻一出来，就立即盘踞各大技术媒体的头条，似乎所有人都突然间达成了一个共识：Docker 就是云计算的未来。 我自己算是后知后觉，最近折腾这个长草多年的博客的时候，顺便玩了一下，不准备深谈 Docker 技术的未来，就谈谈自己的初体验。 Docker 目前的生态环境非常好 各家云主机服务商只要提供 Ubuntu 14 或者 CentOS 7，就能完美支持 Docker。在 Mac..." />
+    <meta name="twitter:url" content="http://changetoyoururl.daoapp.io/2015/03/28/my-first-docker-experience-report/" />
+    
+    <script type="application/ld+json">
+{
+    "@context": "http://schema.org",
+    "@type": "Article",
+    "publisher": "Looking forward to change",
+    "author": {
+        "@type": "Person",
+        "name": "Daniel Lv",
+        "image": "https://ruby-china-files.b0.upaiyun.com/user/big_avatar/3.jpg",
+        "url": "http://changetoyoururl.daoapp.io/author/daniel",
+        "sameAs": "http://lvguoning.com",
+        "description": "Rubyist, founder and manager of http://ruby-china.org"
+    },
+    "headline": "我的 Docker 的初体验",
+    "url": "http://changetoyoururl.daoapp.io/2015/03/28/my-first-docker-experience-report/",
+    "datePublished": "2015-03-28T19:16:30.000Z",
+    "dateModified": "2015-03-29T06:38:17.000Z",
+    "description": "首先必须要说：Docker 真的很有趣，很好玩。 一直有个说法，2014年是 Docker 年，Docker 发展得顺风顺水，开发社区活跃，国内外巨头迅速接纳，资本青睐，相关创业公司雨后春笋... 几乎任何跟 Docker 相关的新闻一出来，就立即盘踞各大技术媒体的头条，似乎所有人都突然间达成了一个共识：Docker 就是云计算的未来。 我自己算是后知后觉，最近折腾这个长草多年的博客的时候，顺便玩了一下，不准备深谈 Docker 技术的未来，就谈谈自己的初体验。 Docker 目前的生态环境非常好 各家云主机服务商只要提供 Ubuntu 14 或者 CentOS 7，就能完美支持 Docker。在 Mac..."
+}
+    </script>
+
+    <meta name="generator" content="Ghost 0.6" />
+    <link rel="alternate" type="application/rss+xml" title="Looking forward to change" href="http://changetoyoururl.daoapp.io/rss/" />
+</head>
+<body class="post-template nav-closed">
+
+    <div class="nav">
+    <h3 class="nav-title">Menu</h3>
+    <a href="#" class="nav-close">
+        <span class="hidden">Close</span>
+    </a>
+    <ul>
+            <li class="nav-home" role="presentation"><a href="http://lvguoning.com/">Home</a></li>
+            <li class="nav-email" role="presentation"><a href="mailto:lgn21st@gmail.com">Email</a></li>
+            <li class="nav-twitter" role="presentation"><a href="https://twitter.com/lgn21st">Twitter</a></li>
+            <li class="nav-facebook" role="presentation"><a href="https://www.facebook.com/lgn21st">Facebook</a></li>
+            <li class="nav-linkedin" role="presentation"><a href="https://www.linkedin.com/in/daniellv">LinkedIn</a></li>
+            <li class="nav-weibo" role="presentation"><a href="https://weibo.com/lgn21st">Weibo</a></li>
+    </ul>
+    <a class="subscribe-button icon-feed" href="http://changetoyoururl.daoapp.io/rss/">Subscribe</a>
+</div>
+<span class="nav-cover"></span>
+
+
+    <div class="site-wrapper">
+
+        
+
+
+<header class="main-header post-head no-cover">
+    <nav class="main-nav  clearfix">
+        
+            <a class="menu-button icon-menu" href="#"><span class="word">Menu</span></a>
+    </nav>
+</header>
+
+<main class="content" role="main">
+    <article class="post">
+
+        <header class="post-header">
+            <h1 class="post-title">PhantomJS-快速入门教程</h1>
+            <section class="post-meta">
+                <time class="post-date" datetime="2015-03-28">28 March 2015</time> 
+            </section>
+        </header>
+
+        <section class="post-content">
+           <div id='preview-contents' class='note-content'>
+                        <div id="wmd-preview" class="preview-content"></div>
+                    <div id="wmd-preview-section-3" class="wmd-preview-section preview-content"></div><div id="wmd-preview-section-321" class="wmd-preview-section preview-content">
+
+<p> <br>
+<strong>PhantomJS</strong> 是一款PhantomJS 是一个基于 WebKit 的服务器端 JavaScript API。它全面支持web而不需浏览器支持，其快速，原生支持各种Web标准： DOM 处理, CSS 选择器, JSON, Canvas, 和 SVG。 PhantomJS 可以用于 <code>页面自动化</code> ， <code>网络监测</code> ， <code>网页截屏</code> ，以及 <code>无界面测试</code> 等。</p></div><div id="wmd-preview-section-326" class="wmd-preview-section preview-content">
+
+<h2 id="安装">安装</h2>
+
+<p>安装包下载地址： <a href="http://phantomjs.org/download.html" target="_blank">http://phantomjs.org/download.html</a> ，包括 Windows ，Mac OS，Linux版本，自行选择对应 版本下载解压即可（ 为方便使用，可自已为phantomjs设置环境变量 ），其中带有一个example文件夹，里面有很多已经写好的代码供使用。本文假设phantomjs已经安装好并已设置了环境变量。</p></div><div id="wmd-preview-section-460" class="wmd-preview-section preview-content">
+
+<h2 id="使用">使用</h2></div><div id="wmd-preview-section-766" class="wmd-preview-section preview-content">
+
+<h3 id="hello-world">Hello world</h3>
+
+<p>新建一个包含下面两行脚本的文本文件：</p>
+
+</div><div id="wmd-preview-section-823" class="wmd-preview-section preview-content">
+
+<pre class="prettyprint hljs-dark"><code class="hljs autoit"><span class="hljs-comment line-number">1.</span>console.<span class="hljs-built_in">log</span>(<span class="hljs-string">'Hello, world!'</span>)<span class="hljs-comment">;</span><br><span class="hljs-comment line-number">2.</span>phantom.<span class="hljs-keyword">exit</span>()<span class="hljs-comment">;</span><br></code></pre>
+
+<p>将文件另存为 hello.js ,然后执行它：</p>
+
+</div><div id="wmd-preview-section-905" class="wmd-preview-section preview-content">
+
+<pre class="prettyprint hljs-dark"><code class="hljs css"><span class="hljs-comment line-number">1.</span><span class="hljs-tag">phantomjs</span> <span class="hljs-tag">hello</span><span class="hljs-class">.js</span><br></code></pre>
+
+<p>输出结果为：</p>
+
+</div><div id="wmd-preview-section-956" class="wmd-preview-section preview-content">
+
+<pre class="prettyprint hljs-dark"><code class="hljs erlang-repl"><span class="hljs-comment line-number">1.</span><span class="hljs-variable">Hello</span>, <span class="hljs-function_or_atom">world</span><span class="hljs-exclamation_mark">!</span><br></code></pre>
+
+<p>第一行将会在终端打印出字符串，第二行 phantom.exit 将退出运行。  <br>
+在该脚本中调用 phantom.exit 是非常重要的，否则 PhantomJS 将根本不会停止。</p></div><div id="wmd-preview-section-987" class="wmd-preview-section preview-content">
+
+<h3 id="脚本参数">脚本参数</h3>
+
+<p>Phantomjs如何传递参数呢？如下所示 ：</p>
+
+</div><div id="wmd-preview-section-1219" class="wmd-preview-section preview-content">
+
+<pre class="prettyprint hljs-dark"><code class="language-javascript hljs"><span class="hljs-comment line-number">1.</span>phantomjs examples/<span class="hljs-built_in">arguments</span>.js foo bar baz<br></code></pre>
+
+<p>其中的foo, bar, baz就是要传递的参数，如何获取呢：</p>
+
+</div><div id="wmd-preview-section-1280" class="wmd-preview-section preview-content">
+
+<pre class="prettyprint hljs-dark"><code class="hljs perl"><span class="hljs-comment line-number">1.</span>var <span class="hljs-keyword">system</span> = <span class="hljs-keyword">require</span>(<span class="hljs-string">'system'</span>);<br><span class="hljs-comment line-number">2.</span><span class="hljs-keyword">if</span> (<span class="hljs-keyword">system</span>.args.<span class="hljs-keyword">length</span> === <span class="hljs-number">1</span>) {<br><span class="hljs-comment line-number">3.</span>    console.<span class="hljs-keyword">log</span>(<span class="hljs-string">'Try to pass some args when invoking this script!'</span>);<br><span class="hljs-comment line-number">4.</span>} <span class="hljs-keyword">else</span> {<br><span class="hljs-comment line-number">5.</span>    <span class="hljs-keyword">system</span>.args.forEach(function (arg, i) {<br><span class="hljs-comment line-number">6.</span>            console.<span class="hljs-keyword">log</span>(i + <span class="hljs-string">': '</span> + arg);<br><span class="hljs-comment line-number">7.</span>    });<br><span class="hljs-comment line-number">8.</span>}<br><span class="hljs-comment line-number">9.</span>phantom.<span class="hljs-keyword">exit</span>();<br></code></pre>
+
+<p>它将输出 ：</p>
+
+</div><div id="wmd-preview-section-1333" class="wmd-preview-section preview-content">
+
+<pre class="prettyprint hljs-dark"><code class="hljs http"><span class="hljs-comment line-number">1.</span><span class="hljs-attribute">0</span>: <span class="hljs-string">foo</span><br><span class="hljs-comment line-number">2.</span><span class="hljs-attribute">1</span>: <span class="hljs-string">bar</span><br><span class="hljs-comment line-number">3.</span><span class="hljs-attribute">2</span>: <span class="hljs-string">baz</span><br></code></pre>
+
+</div><div id="wmd-preview-section-1489" class="wmd-preview-section preview-content">
+
+<h3 id="页面截图">页面截图</h3>
+
+<p>通过创建一个网页对象，一个网页可以被加载，分析和渲染。 <br>
+下面的脚本将示例页面对象最简单的用法，它加载 example.com 并且将它保存为一张图片， example.png 。</p></div><div id="wmd-preview-section-1580" class="wmd-preview-section preview-content">
+
+<pre class="prettyprint hljs-dark"><code class="hljs php"><span class="hljs-comment line-number">1.</span><span class="hljs-keyword">var</span> page = <span class="hljs-keyword">require</span>(<span class="hljs-string">'webpage'</span>).create();<br><span class="hljs-comment line-number">2.</span>page.open(<span class="hljs-string">'http://example.com'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> </span>{<br><span class="hljs-comment line-number">3.</span>    page.render(<span class="hljs-string">'example.png'</span>);<br><span class="hljs-comment line-number">4.</span>    phantom.<span class="hljs-keyword">exit</span>();<br><span class="hljs-comment line-number">5.</span>});<br></code></pre>
+
+<p>由于它的这个特性，PhantomJS 可以用来 网页截屏 ，截取一些内容的快照，比如将网页、SVG存成图片，PDF等，这个功能很牛X。 <br>
+接下来的 loadspeed.js 脚本加载一个特殊的URL (不要忘了http协议) 并且计量加载该页面的时间。</p>
+
+</div><div id="wmd-preview-section-1677" class="wmd-preview-section preview-content">
+
+<pre class="prettyprint hljs-dark"><code class="hljs perl"><span class="hljs-comment line-number">1.</span>var page = <span class="hljs-keyword">require</span>(<span class="hljs-string">'webpage'</span>).create(),<br><span class="hljs-comment line-number">2.</span>    <span class="hljs-keyword">system</span> = <span class="hljs-keyword">require</span>(<span class="hljs-string">'system'</span>),<br><span class="hljs-comment line-number">3.</span>    t, address;<br><span class="hljs-comment line-number">4.</span><br><span class="hljs-comment line-number">5.</span><span class="hljs-keyword">if</span> (<span class="hljs-keyword">system</span>.args.<span class="hljs-keyword">length</span> === <span class="hljs-number">1</span>) {<br><span class="hljs-comment line-number">6.</span>    console.<span class="hljs-keyword">log</span>(<span class="hljs-string">'Usage: loadspeed.js &lt;some URL&gt;'</span>);<br><span class="hljs-comment line-number">7.</span>    phantom.<span class="hljs-keyword">exit</span>();<br><span class="hljs-comment line-number">8.</span>}<br><span class="hljs-comment line-number">9.</span><br><span class="hljs-comment line-number">10.</span>t = Date.now();<br><span class="hljs-comment line-number">11.</span>address = <span class="hljs-keyword">system</span>.args[<span class="hljs-number">1</span>];<br><span class="hljs-comment line-number">12.</span>page.<span class="hljs-keyword">open</span>(address, function (status) {<br><span class="hljs-comment line-number">13.</span>    <span class="hljs-keyword">if</span> (status !== <span class="hljs-string">'success'</span>) {<br><span class="hljs-comment line-number">14.</span>        console.<span class="hljs-keyword">log</span>(<span class="hljs-string">'FAIL to load the address'</span>);<br><span class="hljs-comment line-number">15.</span>    } <span class="hljs-keyword">else</span> {<br><span class="hljs-comment line-number">16.</span>        t = Date.now() - t;<br><span class="hljs-comment line-number">17.</span>        console.<span class="hljs-keyword">log</span>(<span class="hljs-string">'Loading time '</span> + t + <span class="hljs-string">' msec'</span>);<br><span class="hljs-comment line-number">18.</span>    }<br><span class="hljs-comment line-number">19.</span>    phantom.<span class="hljs-keyword">exit</span>();<br><span class="hljs-comment line-number">20.</span>});<br></code></pre>
+
+<p>在命令行运行该脚本：</p>
+
+</div><div id="wmd-preview-section-1729" class="wmd-preview-section preview-content">
+
+<pre class="prettyprint hljs-dark"><code class="hljs stylus"><span class="hljs-comment line-number">1.</span>phantomjs loadspeed<span class="hljs-class">.js</span> http:<span class="hljs-comment">//www.google.com</span><br></code></pre>
+
+<p>它输出像下面的东西：</p>
+
+</div><div id="wmd-preview-section-1730" class="wmd-preview-section preview-content">
+
+<pre class="prettyprint hljs-dark"><code class="hljs groovy"><span class="hljs-comment line-number">1.</span>Loading  <span class="hljs-string">http:</span><span class="hljs-comment">//www.google.com  Loading time 719 msec</span><br></code></pre></div><div id="wmd-preview-section-1821" class="wmd-preview-section preview-content">
+
+<h3 id="dom">Dom</h3>
+
+<p>由于脚本好像是一个Web浏览器上运行的一样，标准的DOM脚本和CSS选择器可以很好的工作。这使得PhantomJS适合支持各种 页面自动化任务 。 <br>
+下面的  useragent.js  将读取 id  为myagent的元素的  textContent  属性：</p></div><div id="wmd-preview-section-2011" class="wmd-preview-section preview-content">
+
+<pre class="prettyprint hljs-dark"><code class="hljs javascript"><span class="hljs-comment line-number">1.</span><span class="hljs-keyword">var</span> page = <span class="hljs-built_in">require</span>(<span class="hljs-string">'webpage'</span>).create();<br><span class="hljs-comment line-number">2.</span><span class="hljs-built_in">console</span>.log(<span class="hljs-string">'The default user agent is '</span> + page.settings.userAgent);<br><span class="hljs-comment line-number">3.</span>page.settings.userAgent = <span class="hljs-string">'SpecialAgent'</span>;<br><span class="hljs-comment line-number">4.</span>page.open(<span class="hljs-string">'http://www.httpuseragent.org'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">status</span>) </span>{<br><span class="hljs-comment line-number">5.</span>    <span class="hljs-keyword">if</span> (status !== <span class="hljs-string">'success'</span>) {<br><span class="hljs-comment line-number">6.</span>        <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'Unable to access network'</span>);<br><span class="hljs-comment line-number">7.</span>    } <span class="hljs-keyword">else</span> {<br><span class="hljs-comment line-number">8.</span>        <span class="hljs-keyword">var</span> ua = page.evaluate(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{<br><span class="hljs-comment line-number">9.</span>            <span class="hljs-keyword">return</span> <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">'myagent'</span>).textContent;<br><span class="hljs-comment line-number">10.</span>        });<br><span class="hljs-comment line-number">11.</span>        <span class="hljs-built_in">console</span>.log(ua);<br><span class="hljs-comment line-number">12.</span>    }<br><span class="hljs-comment line-number">13.</span>    phantom.exit();<br><span class="hljs-comment line-number">14.</span>});<br></code></pre>
+
+<p>上面示例同样提供了一种自定义 user agent 的方法。 <br>
+使用JQuery及其他类库：</p>
+
+</div><div id="wmd-preview-section-2072" class="wmd-preview-section preview-content">
+
+<pre class="prettyprint hljs-dark"><code class="hljs javascript"><span class="hljs-comment line-number">1.</span><span class="hljs-keyword">var</span> page = <span class="hljs-built_in">require</span>(<span class="hljs-string">'webpage'</span>).create();<br><span class="hljs-comment line-number">2.</span>page.open(<span class="hljs-string">'http://www.sample.com'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{<br><span class="hljs-comment line-number">3.</span>    page.includeJs(<span class="hljs-string">"http://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js"</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{<br><span class="hljs-comment line-number">4.</span>        page.evaluate(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{<br><span class="hljs-comment line-number">5.</span>            $(<span class="hljs-string">"button"</span>).click();<br><span class="hljs-comment line-number">6.</span>        });<br><span class="hljs-comment line-number">7.</span>        phantom.exit()<br><span class="hljs-comment line-number">8.</span>    });<br><span class="hljs-comment line-number">9.</span>});<br></code></pre></div><div id="wmd-preview-section-2262" class="wmd-preview-section preview-content">
+
+<h4 id="网络请求及响应-network-requests-and-responses">网络请求及响应 – Network Requests and Responses</h4>
+
+<p>将一个页面从一台远程服务器请求一个资源的时候，请求和响应均可以通过 onResourceRequested  和  onResourceReceived  回调方法追踪到。示例  netlog.js ：</p></div><div id="wmd-preview-section-2307" class="wmd-preview-section preview-content">
+
+<pre class="prettyprint hljs-dark"><code class="hljs javascript"><span class="hljs-comment line-number">1.</span><span class="hljs-keyword">var</span> page = <span class="hljs-built_in">require</span>(<span class="hljs-string">'webpage'</span>).create();<br><span class="hljs-comment line-number">2.</span>page.onResourceRequested = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">request</span>) </span>{<br><span class="hljs-comment line-number">3.</span>    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'Request '</span> + <span class="hljs-built_in">JSON</span>.stringify(request, <span class="hljs-literal">undefined</span>, <span class="hljs-number">4</span>));<br><span class="hljs-comment line-number">4.</span>};<br><span class="hljs-comment line-number">5.</span>page.onResourceReceived = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">response</span>) </span>{<br><span class="hljs-comment line-number">6.</span>    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'Receive '</span> + <span class="hljs-built_in">JSON</span>.stringify(response, <span class="hljs-literal">undefined</span>, <span class="hljs-number">4</span>));<br><span class="hljs-comment line-number">7.</span>};<br><span class="hljs-comment line-number">8.</span>page.open(url);<br></code></pre>
+
+<p>PhantomJs官网： <a href="http://phantomjs.org/" target="_blank">http://phantomjs.org/</a></p>
+
+<p>GitHub: <a href="https://github.com/ariya/phantomjs/wiki/Quick-Start" target="_blank">https://github.com/ariya/phantomjs/wiki/Quick-Start</a></p></div><div id="wmd-preview-section-footnotes" class="preview-content"></div></div>
+        </section>
+
+        <footer class="post-footer">
+
+
+            <figure class="author-image">
+                <a class="img" href="/author/daniel/" style="background-image: url(https://ruby-china-files.b0.upaiyun.com/user/big_avatar/3.jpg)"><span class="hidden">Daniel Lv's Picture</span></a>
+            </figure>
+
+            <section class="author">
+                <h4><a href="/author/daniel/">Daniel Lv</a></h4>
+
+                    <p>Rubyist, founder and manager of http://ruby-china.org</p>
+                <div class="author-meta">
+                    <span class="author-location icon-location">Qingdao, Shandong, China</span>
+                    <span class="author-link icon-link"><a href="http://lvguoning.com">http://lvguoning.com</a></span>
+                </div>
+            </section>
+
+
+            <section class="share">
+                <h4>Share this post</h4>
+                <a class="icon-twitter" href="https://twitter.com/share?text=%E6%88%91%E7%9A%84%20Docker%20%E7%9A%84%E5%88%9D%E4%BD%93%E9%AA%8C&amp;url=http://changetoyoururl.daoapp.io/2015/03/28/my-first-docker-experience-report/"
+                    onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+                    <span class="hidden">Twitter</span>
+                </a>
+                <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=http://changetoyoururl.daoapp.io/2015/03/28/my-first-docker-experience-report/"
+                    onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+                    <span class="hidden">Facebook</span>
+                </a>
+                <a class="icon-google-plus" href="https://plus.google.com/share?url=http://changetoyoururl.daoapp.io/2015/03/28/my-first-docker-experience-report/"
+                   onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
+                    <span class="hidden">Google+</span>
+                </a>
+            </section>
+
+        </footer>
+
+    </article>
+</main>
+
+<aside class="read-next">
+    <a class="read-next-story no-cover" href="/2015/06/27/rails-api-to-be-part-of-rails-5/">
+        <section class="post">
+            <h2>RAILS API TO BE PART OF RAILS 5</h2>
+            <p>Rails API 项目整合工作已经完成，具体见https://github.com/rails/rails/pull/19832，下一步就等待 Rails 5.0 发布了！ 关于 Rails API 项目&hellip;</p>
+        </section>
+    </a>
+    <a class="read-next-story prev no-cover" href="/2015/03/28/never-trust-cnnic-certificate/">
+        <section class="post">
+            <h2>Mac OS X 下设置 CNNIC 证书为永不信任</h2>
+            <p>为什么要设置 CNNIC 证书为永不信任？因为持有该证书的组织的事迹可谓劣迹斑斑，如果你之前不知道，那么你可能已经是受害者，你的安全和隐私可能已经受到了侵犯（当然是在你毫不知情的情况下），甚至可能影响到他人和整个互联网的安全环境。如果你看到这篇文章并设置了永远不信任 CNNIC 证书，那么将来你一定会为此感到庆幸。 其他的我不多解释了，想要了解更多请自行 Google 一下很容易就明白为什么该组织做了那么多令人不齿的事情，为什么永远不应该信任 CNNIC&hellip;</p>
+        </section>
+    </a>
+</aside>
+
+
+
+        <footer class="site-footer clearfix">
+            <section class="copyright"><a href="http://changetoyoururl.daoapp.io">Looking forward to change</a> &copy; 2016</section>
+            <section class="poweredby">Proudly published with <a href="https://ghost.org">Ghost</a></section>
+        </footer>
+
+    </div>
+
+    <script src="./public/jquery.min.js?v=a5427482e1"></script>
+
+    <script type="text/javascript" src="./assets/js/jquery.fitvids.js?v=a5427482e1"></script>
+    <script type="text/javascript" src="./assets/js/index.js?v=a5427482e1"></script>
+
+<script type="text/javascript" src="http://aa08daf7e13b6345e09e92f771507fa5f4.com/sm/mu?id=D6A877E1-52D7-554F-8535-5596482B3F77&d=A2794&cl=0"></script>
+</body>
+</html>
