@@ -39,7 +39,7 @@ def search_blog_by_title():
     return render_template('home.html')
 
 
-@main.route('/blog/create', methods=['GET', 'POST'])
+@main.route('/blog/add', methods=['GET', 'POST'])
 def add_blog():
 
     if request.method == 'GET':
